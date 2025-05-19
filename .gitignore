@@ -1,0 +1,11 @@
+fsd50k_audios/
+dataset/
+0-old/
+0-old-after-curring/
+output/
+beats/models/
+embs/.model-checkpoints/
+.cache/
+TEST/
+TEST_dataset/
+pretrained_models/

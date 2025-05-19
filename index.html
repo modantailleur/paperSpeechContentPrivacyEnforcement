@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Enforcing Speech Content Privacy in Environmental Sound Recordings using Segment-wise Waveform Reversal</title>
+
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+  <link href="http://fonts.googleapis.com/css?family=Lato:300,400,900" rel="stylesheet" type="text/css">
+  <link href="style.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Title and Authors -->
+  <div id="header" class="container text-center my-4">
+    <h1>Enforcing Speech Content Privacy in Environmental Sound Recordings using Segment-wise Waveform Reversal</h1>
+    <p class="mt-3 mb-1"><strong>Modan Tailleur, Mathieu Lagrange, Pierre Aumond, Vincent Tourre</strong></p>
+    <p>Contact: <a href="mailto:modan.tailleur@ls2n.fr">modan.tailleur@ls2n.fr</a></p>
+  </div>
+
+  <!-- Abstract -->
+  <div class="container">
+    <h2>Abstract</h2>
+    <p>
+      Environmental sound recordings often contain intelligible speech, raising privacy concerns that limit analysis, sharing, and reuse of data. In this paper, we introduce a method that renders speech unintelligible while preserving both the integrity of the acoustic scene and the overall audio quality. Our approach involves reversing waveform segments to distort speech content. This process is enhanced through a voice activity detection and speech separation pipeline, which allows for more precise targeting of speech.
+    </p>
+    <p>
+      In order to demonstrate the effectiveness of the proposed approach, we consider a three-part evaluation protocol that assesses:<br>
+      1) Speech intelligibility using Word Error Rate (WER),<br>
+      2) Sound sources detectability using Sound Source Classification Accuracy-Drop (SCAD) from a widely used pre-trained model, and<br>
+      3) Audio quality using the Fréchet Audio Distance (FAD), computed with our reference dataset that contains unaltered speech.
+    </p>
+    <p>
+      Experiments on this simulated evaluation dataset, which consists of linear mixtures of speech and environmental sound scenes, show that our method achieves satisfactory speech intelligibility reduction (97.9% WER), minimal degradation of the sound sources detectability (2.7% SCAD), and high perceptual quality (FAD of 1.38). An ablation study further highlights the contribution of each component of the pipeline. We also show that incorporating random splicing into our speech content privacy enforcement method can enhance the algorithm’s robustness to attempts to recover the clean speech, at a slight cost of audio quality.
+    </p>
+    <p>This is the companion page for the paper: TBF</p>
+    <p>Please, cite as: TBF</p>
+    <p>Experience code is available in <a href="https://github.com/modantailleur/paperSpeechContentPrivacyEnforcement">this GitHub repository</a>.</p>
+  </div>
+
+  <!-- Main Evaluation -->
+  <div class="container mt-5" id="table_techniques">
+    <h2>Main Evaluation</h2>
+    <p>Below, the voice extracts generated from the different methods on two audio files: <code>61-70968-0035__11_004030.wav</code> and <code>01_005499.wav</code>.</p>
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>61-70968-0035__11_004030.wav</th>
+          <th>01_005499.wav</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Original audio</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>Cohen-Adria et al.</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_cohen.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_cohen.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>Burkhardt et al.</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_burkhardt.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_burkhardt.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>Ours (Conv-TasNet)</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours_envss.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_ours_envss.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>Ours</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_ours.wav" type="audio/wav"></audio></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Ablation Study -->
+  <div class="container mt-5" id="table_effects">
+    <h2>Ablation Study</h2>
+    <p>Below, the voice extracts generated from ablation methods on two audio files: <code>61-70968-0035__11_004030.wav</code> and <code>01_005499.wav</code>.</p>
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>61-70968-0035__11_004030.wav</th>
+          <th>01_005499.wav</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ours</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_ours.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>-w/o VAD</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours_novad.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_novad.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>-w/o Source Sep.</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours_noss.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_noss.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>-w/o Overlap-add</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours_nosmooth.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/01_005499_nosmooth.wav" type="audio/wav"></audio></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Robustness Study -->
+  <div class="container mt-5" id="table_robustness">
+    <h2>Robustness Study</h2>
+    <p>Below, the voice extracts evaluating robustness to content recovery, using our method and "mixframe" variants.
+        The audio <code>61-70968-0035__11_004030.wav (Anonymizedx2)</code> indicates the audio where we applied the privacy enforcement method
+        on the already privacy enforced <code>61-70968-0035__11_004030</code> file.
+    </p>
+
+    <table class="table table-responsive">
+      <thead>
+        <tr>
+          <th>Method</th>
+          <th>61-70968-0035__11_004030.wav</th>
+          <th>61-70968-0035__11_004030.wav (Anonymizedx2)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ours</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_rev_ours.wav" type="audio/wav"></audio></td>
+        </tr>
+        <tr>
+          <td>Ours (with mixframe)</td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_ours_with_mixframe.wav" type="audio/wav"></audio></td>
+          <td><audio controls class="sample_audio"><source src="example_audio/61-70968-0035__11_004030_rev_ours_with_mixframe.wav" type="audio/wav"></audio></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Pause other audio elements when one is played -->
+  <script>
+    function setupCallback(elem, elems) {
+      elem.addEventListener("play", function () {
+        for (var other of elems) {
+          if (other !== elem) {
+            other.pause();
+          }
+        }
+      });
+    }
+
+    document.addEventListener('DOMContentLoaded', function () {
+      var elems = document.body.getElementsByTagName("audio");
+      for (var elem of elems) {
+        setupCallback(elem, elems);
+      }
+    });
+  </script>
+
+</body>
+</html>
