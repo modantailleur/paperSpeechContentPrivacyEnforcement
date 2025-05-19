@@ -73,4 +73,4 @@ python3 ./dataset_creation/format_final_csv_file.py
 ## Companion page
 
 Please check the companion page for audio examples:
-https://modantailleur.github.io/paperSpeechContentPrivacy/
+https://modantailleur.github.io/paperSpeechContentPrivacyEnforcement/
